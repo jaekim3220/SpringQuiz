@@ -1,4 +1,4 @@
-package com.quiz.lesson02.domain;
+package com.quiz.lesson03.domain;
 
 import java.time.LocalDateTime;
 
@@ -10,17 +10,16 @@ DB연동 : View영역 <--> Controller영역(Domain) <--> Service(BO)영역 <--> 
 
 // 일반 JAVA BEAN
 // DTO(Data Transfer Object), Domain, Model, Entity(결과)
-public class Store {
-	
+public class RealEstate {
+
 	// 가져올 DB의 Columns를 입력
-	
-	// 속성 : field (`store` 테이블)
 	private int id;
-	private String name;
-	private String phoneNumber;
+	private int realtorId;
 	private String address;
-	private String businessNumber;
-	private String introduce;
+	private int area;
+	private String type;
+	private int price;
+	private Integer rentPrice; // nullable
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
 	
@@ -32,17 +31,11 @@ public class Store {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+	public int getRealtorId() {
+		return realtorId;
 	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
+	public void setRealtorId(int realtorId) {
+		this.realtorId = realtorId;
 	}
 	public String getAddress() {
 		return address;
@@ -50,17 +43,29 @@ public class Store {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public String getBusinessNumber() {
-		return businessNumber;
+	public int getArea() {
+		return area;
 	}
-	public void setBusinessNumber(String businessNumber) {
-		this.businessNumber = businessNumber;
+	public void setArea(int area) {
+		this.area = area;
 	}
-	public String getIntroduce() {
-		return introduce;
+	public String getType() {
+		return type;
 	}
-	public void setIntroduce(String introduce) {
-		this.introduce = introduce;
+	public void setType(String type) {
+		this.type = type;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	public Integer getRentPrice() {
+		return rentPrice;
+	}
+	public void setRentPrice(Integer rentPrice) {
+		this.rentPrice = rentPrice;
 	}
 	public LocalDateTime getCreatedAt() {
 		return createdAt;

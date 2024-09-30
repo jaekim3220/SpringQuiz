@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ 
+<!-- DB영역 -->
+<mapper namespace = "com.quiz.lesson03.mapper.RealEstateMapper">
+
+	<!-- 3-1 -->
+	<select id="selectEstateById" parameterType="int" resultType="com.quiz.lesson03.domain.RealEstate">
+		SELECT
+			`id`,
+			`realtorId`,
+			`address`,
+			`area`,
+			`type`,
+			`price`,
+			`rentPrice`,
+			`createdAt`,
+			`updatedAt`
+		FROM 
+			`real_estate`
+		WHERE 
+			`id` = #{id}
+	</select>
+	
+	<!-- 3-2 -->
+	<select id="RentPriceList" parameterType="Integer" resultType="com.quiz.lesson03.domain.RealEstate">
+		SELECT
+			`id`,
+			`realtorId`,
+			`address`,
+			`area`,
+			`type`,
+			`price`,
+			`rentPrice`,
+			`createdAt`,
+			`updatedAt`
+		FROM 
+			`real_estate`
+		WHERE
+			<!-- > : &gt; -->
+			<!-- rentPrice &gt; #{rent_price} -->
+        	<!-- < : &lt; -->
+        	<!-- rentPrice &lt; #{rent_price} -->
+	        <![CDATA[
+	        	rentPrice < #{rent_price}
+	        ]]>
+	</select>
+	
+	<!-- 3-3 -->
+</mapper>
