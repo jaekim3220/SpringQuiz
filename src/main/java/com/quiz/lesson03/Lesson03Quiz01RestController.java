@@ -23,7 +23,7 @@ public class Lesson03Quiz01RestController {
 	
 	// 어노테이션(Annotation)
 	@Autowired // DI(Dependency Injection) : 의존성 주입
-	private RealEstateBo estateBo;
+	private RealEstateBo realestateBo;
 
 	
 	/*
@@ -40,7 +40,7 @@ public class Lesson03Quiz01RestController {
 			// parameter 설정
 			
 			// 필수 파라미터 불러오기1 : value, required 생략 (추천)
-			// @RequestParam("id") int id
+			@RequestParam("id") int id
 			
 			// 필수 파라미터 불러오기2
 			// @RequestParam(value = "id", required = true) int id
@@ -52,12 +52,13 @@ public class Lesson03Quiz01RestController {
 			 // @RequestParam(value = "id", required = false) Integer id
 			
 			// 비필수 파라미터 불러오기2 : 기본값 설정 (추천)
-			 @RequestParam(value = "id", defaultValue = "1") int id // 기본값 : 1
+			// @RequestParam(value = "id", defaultValue = "1") int id // 기본값 : 1
+			
 			) {
 //		if (id == null) {
 //			id = 1;
 //		}
-		return estateBo.getEstate(id);
+		return realestateBo.getRealEstateById(id);
 	}
 	
 	
@@ -74,24 +75,25 @@ public class Lesson03Quiz01RestController {
 			// parameter 설정
 			
 			// 필수 파라미터 불러오기1 : value, required 생략 (추천)
-			@RequestParam("rent_price") Integer rent_price
+			@RequestParam("rent_price") int rentPrice
 			
 			// 필수 파라미터 불러오기2
-			// @RequestParam(value = "rent_price", required = true) double rent_price
+			// @RequestParam(value = "rent_price", required = true) int rentPrice
 			
 			// 필수 파라미터 불러오기3
-			// @RequestParam(value = "rent_price") double rent_price
+			// @RequestParam(value = "rent_price") int rentPrice
 			
 			// 비필수 파라미터 불러오기1
-			// @RequestParam(value = "rent_price", required = false) Double rent_price
+			// @RequestParam(value = "rent_price", required = false) int rentPrice
 			
 			// 비필수 파라미터 불러오기2 : 기본값 설정 (추천)
-			// @RequestParam(value = "rent_price", defaultValue = "200") double rent_price // 기본값 : 1
+			// @RequestParam(value = "rent_price", defaultValue = "200") int rentPrice // 기본값 : 1
+			
 			) {
-//		if (rent_price == null) {
-//			rent_price = (double) 200;
+//		if (rentPrice == null) {
+//			rentPrice = (double) 200;
 //		}
-		return estateBo.getEstate(rent_price);
+		return realestateBo.getRentPriceListByRentPrice(rentPrice);
 	}
 	
 	
@@ -106,6 +108,14 @@ public class Lesson03Quiz01RestController {
 	/lesson03/quiz01/3?area=90&price=130000
 	*/
 	
-//	@RequestMapping("/3")
-//	public 
+	@RequestMapping("/3")
+	public List<RealEstate> quiz01_3(
+			@RequestParam("area") int area,
+			@RequestParam("price") int price
+			
+			) {
+		return realestateBo.getRealEstateListByAreaPrice(area, price);
+	}
+	
+	
 }
