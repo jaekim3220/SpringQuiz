@@ -2,27 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
- 	<!-- DB영역 -->
- 	<mapper namespace="">
- 	
-	 	<!-- lesson04 MVC Cycle 4-1 문제1 : seller 추가 -->
-	 	<insert id="" parameterType="map">
-	 		INSERT INTO `seller`
-	 		(
-	 		`nickname`
+	<!-- DB영역 -->
+	<mapper namespace="com.quiz.lesson04.mapper.SellerMapper">
+	
+		<!-- MVC Cycle 1-1 문제 : seller 추가 -->
+		<insert id="insertSeller" parameterType="map">
+			INSERT INTO `seller`
+			(
+			`nickname`
 			`profileImageUrl`,
 			`temperature`,
 			`createdAt`,
 			`updatedAt`,
-	 		)
-	 		VALUES
-	 		(
-	 		#{nickname},
-	 		#{profileImageUrl},
-	 		#{temperature},
-	 		NOW(),
-	 		NOW()
-	 		)
-	 	</insert>
- 	
- 	</mapper>
+			)
+			VALUES
+			(
+			#{nickname},
+			#{profileImageUrl},
+			#{temperature},
+			NOW(),
+			NOW()
+			)
+		
+		</insert>
+	</mapper>
