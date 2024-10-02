@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ 	<!-- DB영역 -->
+ 	<mapper namespace="">
+ 	
+	 	<!-- lesson04 MVC Cycle 4-1 문제1 : seller 추가 -->
+	 	<insert id="" parameterType="map">
+	 		INSERT INTO `seller`
+	 		(
+	 		`nickname`
+			`profileImageUrl`,
+			`temperature`,
+			`createdAt`,
+			`updatedAt`,
+	 		)
+	 		VALUES
+	 		(
+	 		#{nickname},
+	 		#{profileImageUrl},
+	 		#{temperature},
+	 		NOW(),
+	 		NOW()
+	 		)
+	 	</insert>
+ 	
+ 	</mapper>
