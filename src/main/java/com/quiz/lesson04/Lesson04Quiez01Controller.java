@@ -1,5 +1,11 @@
 package com.quiz.lesson04;
 
+/*
+DB연동 : View영역 <--> Controller영역(Domain) <--> Service(BO)영역 <--> Repository영역(Mapper) <--> DB영역 
+*/
+
+// View영역
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,11 +48,14 @@ public class Lesson04Quiez01Controller {
 	public String addSeller(
 			// 필수 파라미터 불러오기1 : value, required 생략 (추천) - null이 아닌 column
 			@RequestParam("nickname") String nickname,
-			@RequestParam("temperature") String temperature,
+			@RequestParam("temperature") float temperature,
 			
 			// 비필수 파라미터 불러오기2 : 기본값 설정 (추천)
 			@RequestParam(value = "profileImageUrl", required = false) String profileImageUrl
 			) {
+		
+		// DB INSERT
+		sellerBo.addSeller(nickname, profileImageUrl, temperature);
 		
 		// 결과 화면 이동
 		return "lesson04/afterAddSeller";

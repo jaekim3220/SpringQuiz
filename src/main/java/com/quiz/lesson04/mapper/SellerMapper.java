@@ -21,6 +21,6 @@ public interface SellerMapper {
 			// 때문에 하나의 Map으로 구성해야 하는데, @Param을 사용해 맵으로 생성이 가능.
 			@Param("nickname") String nickname,
 			@Param("profileImageUrl") String profileImageUrl,
-			@Param("temperature") double temperature);
+			@Param("temperature") float temperature);
 	
 }
