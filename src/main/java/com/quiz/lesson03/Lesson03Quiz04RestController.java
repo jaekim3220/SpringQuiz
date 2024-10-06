@@ -13,6 +13,11 @@ DB연동 : View영역 <--> Controller영역(Domain) <--> Service(BO)영역 <--> 
 
 // View영역
 
+/*
+@Controller + return String => HTML경로 => HTML
+@Controller + @ResponseBody return map => JSON
+@RestController return map => JSON
+*/
 @RestController // 어노테이션 (Spring Bean 등록)
 public class Lesson03Quiz04RestController {
 

@@ -14,6 +14,11 @@ DB연동 : View영역 <--> Controller영역(Domain) <--> Service(BO)영역 <--> 
 
 // View영역
 
+/*
+@Controller + return String => HTML경로 => HTML
+@Controller + @ResponseBody return map => JSON
+@RestController return map => JSON
+*/
 @RestController
 @RequestMapping("/lesson03/quiz03")
 public class Lesson03Quiz03RestController {

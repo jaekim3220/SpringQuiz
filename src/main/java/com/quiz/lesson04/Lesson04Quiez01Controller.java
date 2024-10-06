@@ -14,6 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.quiz.lesson04.bo.SellerBO;
 
+/*
+@Controller + return String => HTML경로 => HTML
+@Controller + @ResponseBody return map => JSON
+@RestController return map => JSON
+*/
 @RequestMapping("/lesson04/quiz01")
 @Controller // HTML 경로일 경우 @ResponseBody가 없다
 public class Lesson04Quiez01Controller {
