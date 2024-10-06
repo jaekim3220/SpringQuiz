@@ -35,6 +35,8 @@ public class Lesson03Quiz04RestController {
 	public String quiz04(
 			// 필수 파라미터 불러오기1 : value, required 생략 (추천)
 			@RequestParam("id") int id) {
+		// Service(BO)영역에서 void로 메서드를 생성할 경우 return 값이 주어지지 않음
+		// Service(BO)영역에서 해당 메서드를 변경해야 DB의 성공행 개수를 반환(return) 가능
 		realestateBo.deleteRealEstateByID(id);
 		return "삭제 성공";
 	}
