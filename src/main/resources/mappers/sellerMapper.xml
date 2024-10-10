@@ -9,19 +9,19 @@
 		<insert id="insertSeller" parameterType="map">
 			INSERT INTO `seller`
 			(
-			`nickname`
-			`profileImageUrl`,
-			`temperature`,
-			`createdAt`,
-			`updatedAt`,
+				`nickname`,
+				`profileImageUrl`,
+				`temperature`,
+				`createdAt`,
+				`updatedAt`
 			)
 			VALUES
 			(
-			#{nickname},
-			#{profileImageUrl},
-			#{temperature},
-			NOW(),
-			NOW()
+				#{nickname},
+				#{profileImageUrl},
+				#{temperature},
+				NOW(),
+				NOW()
 			)
 		
 		</insert>

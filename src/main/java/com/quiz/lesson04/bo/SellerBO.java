@@ -22,7 +22,7 @@ public class SellerBO {
 	// input : 3개 파라미터
 	// output : X
 	// MVC Cycle 1-1 문제 : seller 추가
-	public void addSeller(String nickname, String profileImageUrl, float temperature) {
+	public void addSeller(String nickname, String profileImageUrl, double temperature) {
 		// void로 진행할 경우 return 값이 주어지지 않아 변경한 행의 수가 return 되지 않음
 		sellerMapper.insertSeller(nickname, profileImageUrl, temperature);
 	}

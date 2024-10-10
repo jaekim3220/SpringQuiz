@@ -8,6 +8,7 @@ DB연동 : View영역 <--> Controller영역(Domain) <--> Service(BO)영역 <--> 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -43,7 +44,7 @@ public class Lesson04Quiez01Controller {
 	
 	// 입력 화면 : 판매자 추가
 	// http:localhost:80/lesson04/quiz01/add-seller-view
-	@RequestMapping("/add-seller-view")
+	@GetMapping("/add-seller-view")
 	public String addSellerView() {
 		return "lesson04/addSeller";
 	}
@@ -53,10 +54,10 @@ public class Lesson04Quiez01Controller {
 	public String addSeller(
 			// 필수 파라미터 불러오기1 : value, required 생략 (추천) - null이 아닌 column
 			@RequestParam("nickname") String nickname,
-			@RequestParam("temperature") float temperature,
 			
 			// 비필수 파라미터 불러오기2 : 기본값 설정 (추천)
-			@RequestParam(value = "profileImageUrl", required = false) String profileImageUrl
+			@RequestParam(value = "profileImageUrl", required = false) String profileImageUrl,
+			@RequestParam(value = "temperature", defaultValue = "36.5") double temperature
 			) {
 		
 		// DB INSERT
