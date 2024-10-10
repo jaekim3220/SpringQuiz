@@ -3,6 +3,8 @@ package com.quiz.lesson04.mapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.quiz.lesson04.domain.Seller;
+
 /*
 DB연동 : View영역 <--> Controller영역(Domain) <--> Service(BO)영역 <--> Repository영역(Mapper) <--> DB영역 
 */
@@ -24,4 +26,12 @@ public interface SellerMapper {
 			@Param("profileImageUrl") String profileImageUrl,
 			@Param("temperature") double temperature);
 	
+	
+	// input : X
+	// output : Seller or Null
+	// MVC Cycle 1-2 문제 : seller 출력
+	public Seller selectLatestSeller();
+	
+	// MVC Cycle 1-2 문제 : seller 출력 추가 (id값 가져오기)
+	public Seller selectSellerById(int id);
 }

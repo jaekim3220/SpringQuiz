@@ -3,6 +3,7 @@ package com.quiz.lesson04.bo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.quiz.lesson04.domain.Seller;
 import com.quiz.lesson04.mapper.SellerMapper;
 
 /*
@@ -25,5 +26,18 @@ public class SellerBO {
 	public void addSeller(String nickname, String profileImageUrl, double temperature) {
 		// void로 진행할 경우 return 값이 주어지지 않아 변경한 행의 수가 return 되지 않음
 		sellerMapper.insertSeller(nickname, profileImageUrl, temperature);
+	}
+	
+	
+	// input : X
+	// output : Seller or Null
+	// MVC Cycle 1-2 문제 : seller 출력
+	public Seller getLatestSeller() {
+		return sellerMapper.selectLatestSeller();
+	}
+	
+	// MVC Cycle 1-2 문제 : seller 출력 추가 (id값 가져오기)
+	public Seller getSellerById(int id) {
+		return sellerMapper.selectSellerById(id);
 	}
 }
