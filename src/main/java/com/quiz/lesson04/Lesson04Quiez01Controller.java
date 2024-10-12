@@ -1,11 +1,5 @@
 package com.quiz.lesson04;
 
-/*
-DB연동 : View영역 <--> Controller영역(Domain) <--> Service(BO)영역 <--> Repository영역(Mapper) <--> DB영역 
-*/
-
-// View영역
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,8 +12,16 @@ import com.quiz.lesson04.bo.SellerBO;
 import com.quiz.lesson04.domain.Seller;
 
 /*
-@Controller + return String => HTML경로 => HTML
-@Controller + @ResponseBody return map => JSON
+DB연동 : View영역 <--> Controller영역(Domain) <--> Service(BO)영역 <--> Repository영역(Mapper) <--> DB영역 
+*/
+
+// View영역
+
+/*
+<Response 방법 - 서버 기준>
+@Controller + return String => ViewResolver => HTML 파일 렌더링(Model) => HTML
+@Controller + @ResponseBody return String => HTTPMessageConverter => HTML
+@Controller + @ResponseBody return 객체(map, list) => HTTPMessageConverter => jackson => JSON
 @RestController return map => JSON
 */
 @RequestMapping("/lesson04/quiz01")

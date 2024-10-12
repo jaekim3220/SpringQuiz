@@ -17,8 +17,10 @@ DB연동 : View영역 <--> Controller영역(Domain) <--> Service(BO)영역 <--> 
 // View영역
 
 /*
-@Controller + return String => HTML경로 => HTML
-@Controller + @ResponseBody return map => JSON
+<Response 방법 - 서버 기준>
+@Controller + return String => ViewResolver => HTML 파일 렌더링(Model) => HTML
+@Controller + @ResponseBody return String => HTTPMessageConverter => HTML
+@Controller + @ResponseBody return 객체(map, list) => HTTPMessageConverter => jackson => JSON
 @RestController return map => JSON
 */
 @RestController
@@ -60,6 +62,7 @@ public class Lesson03Quiz01RestController {
 			// @RequestParam(value = "id", defaultValue = "1") int id // 기본값 : 1
 			
 			) {
+		// 비필수 파라미터 불러오기1
 //		if (id == null) {
 //			id = 1;
 //		}
@@ -95,6 +98,7 @@ public class Lesson03Quiz01RestController {
 			// @RequestParam(value = "rent_price", defaultValue = "200") int rentPrice // 기본값 : 1
 			
 			) {
+		// 비필수 파라미터 불러오기1
 //		if (rentPrice == null) {
 //			rentPrice = (double) 200;
 //		}

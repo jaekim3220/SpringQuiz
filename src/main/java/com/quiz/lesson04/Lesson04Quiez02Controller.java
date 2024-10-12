@@ -19,8 +19,10 @@ DB연동 : View영역 <--> Controller영역(Domain) <--> Service(BO)영역 <--> 
 // View영역
 
 /*
-@Controller + return String => HTML경로 => HTML
-@Controller + @ResponseBody return map => JSON
+<Response 방법 - 서버 기준>
+@Controller + return String => ViewResolver => HTML 파일 렌더링(Model) => HTML
+@Controller + @ResponseBody return String => HTTPMessageConverter => HTML
+@Controller + @ResponseBody return 객체(map, list) => HTTPMessageConverter => jackson => JSON
 @RestController return map => JSON
 */
 @RequestMapping("/lesson04/quiz02")
@@ -38,6 +40,9 @@ public class Lesson04Quiez02Controller {
 	submit 후 useGeneratedKeys 를 이용해서 insert한 내용의 id를 얻어내고 이를 이용해서 새롭게 select 하고 그 결과를 출력하세요.
 	입력 form URL : /lesson04/quiz02/add-realtor-view
 	입력 action URL : /lesson04/quiz02/add-realtor
+	
+	※ 추가 : XML에서 useGeneratedKeys와 keyProperty를 사용해 객체(parameterType)가 
+	id 값을 return 받을 수 있게 변경해 중복을 방지할 수 있음
 	*/
 	
 	@GetMapping("/add-realtor-view")
