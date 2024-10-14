@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="utf-8">
+    
+    <title>5-1 : 변수와 조건문</title>
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+	<!-- 변수 정의 내 scope에서만 사용 가능 -->
+	<div th:with="number1=36, number2=3">
+		<h4 th:text="'첫 번째 숫자 : ' + ${number1}"></h4>
+		<h4 th:text="'두 번째 숫자 : ' + ${number2}"></h4>
+	</div>
+	<hr>
+	
+	<!-- th:block => 랜더링 되지 않는 타임리프가 제공하는 특수한 태그 -->
+	<th:block th:with="number1=36, number2=3">
+	
+	<!-- 
+	1. 변수
+	두 개의 숫자 변수를 만들어서 각각 원하는 수를 저장하고, 차례로 출력하세요.
+	-->
+	<h1>1. 변수</h1>
+	
+		<h4 th:text="'첫 번째 숫자 : ' + ${number1}"></h4>
+		<h4 th:text="|두 번째 숫자 : ${number2}|"></h4>
+	<hr>
+	
+	<!--
+	2. 산술 연산
+	위에서 만든 두 개의 변수의 사칙연산 결과를 아래와 같이 출력하세요.
+	-->
+	<h1>2. 산술 연산</h1>
+	
+		<h4 th:text="'더하기 : ' + ${number1 + number2}"></h4>
+		<h4 th:text="|빼기 : ${number1 - number2}|"></h4>
+		<h4 th:text="'곱하기 : ' + ${number1 * number2}"></h4>
+		<h4 th:text="|나누기 : ${number1 / number2}|"></h4>
+	<hr>
+		
+	<!--  
+	3. 태그 출력
+	태그를 해석한 내용으로 보이도록 하세요.
+	<h3>안녕하세요</h3>
+	-->
+	<h1>3. 태그 출력</h1>
+	
+	<!-- th:text를 사용하면 escape된다 -->
+	<div th:text="'<h3>안녕하세요</h3>'"></div>
+	<!-- th:utext는 태그가 적용된다 -->
+	<th:block th:utext="'<h3>안녕하세요</h3>'"></th:block>
+	<hr>
+		
+	<!--  
+	4. if와 unless
+	1번 문제에서 사용한 두 변수의 평균이 10 이상이면 
+	평균 값을 <h1> 태그로 출력하고, 10 미만이면 <h3> 태그로 출력하세요.
+	-->
+	<h1>4. if와 unless</h1>
+	
+	<div th:with="average=${(number1 + number2) / 2.0}">
+		<div th:if="${average >= 10}">
+			<h1 th:text="${average}"></h1>
+		</div>
+		
+		<br>
+		
+		<h1 th:if="${average >= 10}" th:text="${average}"></h1>
+		<!-- unless는 조건이 거짓일 때 참 -->
+		<h3 th:unless="${average >= 10}" th:text="${average}"></h3>
+	</div>
+	
+	</th:block>
+
+	
+
+
+</body>
+
+</html>

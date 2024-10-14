@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="utf-8">
+    
+    <title>5-2 연습문제 : 반복문</title>
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+	<h1>5-2.1 : 반복문(HOT5)</h1>
+	<br>
+	
+	<table class="table text-center">
+		<thead>
+			<tr>
+				<th>순위</th>
+				<th>제목</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr th:each="music, status : ${musicRanking}">
+				<td th:text="${status.count}"></td>
+				<td th:text="${music}"></td>
+			</tr>
+		</tbody>
+	</table>
+	<hr>
+	
+	
+	<h1>5-2.2 : 반복문과 조건(멤버십)</h1>
+	<br>
+	
+	<table class="table text-center">
+		<thead>
+			<tr>
+				<th>이름</th>
+				<th>전화번호</th>
+				<th>등급</th>
+				<th>포인트</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr th:each="member, status : ${membership}">
+				<td th:text="${member.name}"></td>
+				<td th:text="${member.phoneNumber}"></td>
+				<td th:text="${member.grade}"></td>
+				<td th:text="${member.point}"></td>
+			</tr>
+		</tbody>
+	</table>
+
+</body>
+
+</html>
