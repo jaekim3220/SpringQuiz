@@ -48,12 +48,23 @@
 			</tr>
 		</thead>
 		
+		<!--  
+		등급이 VIP인 경우 글씨를 빨간색으로, 등급이 GOLD인 경우 노란색으로 표시하세요.
+		포인트가 5000점 이상이면 포인트를 파란색으로 표시하세요.
+		-->
 		<tbody>
 			<tr th:each="member, status : ${membership}">
 				<td th:text="${member.name}"></td>
 				<td th:text="${member.phoneNumber}"></td>
-				<td th:text="${member.grade}"></td>
-				<td th:text="${member.point}"></td>
+				<td th:switch="${member.grade}">
+					<span th:case="'VIP'" class="text-danger" th:text="${member.grade}"></span>
+					<span th:case="'GOLD'" class="text-warning" th:text="${member.grade}"></span>
+					<span th:case="*" th:text="${member.grade}"></span>
+				</td>
+				<td>
+					<span th:if="${member.point >= 5000}" class="text-primary" th:text="|${member.point}P|"></span>
+					<span th:unless="${member.point >= 5000}" th:text="|${member.point}P|"></span>
+				</td>
 			</tr>
 		</tbody>
 	</table>
