@@ -21,16 +21,18 @@ DB연동 : View영역 <--> Controller영역(Domain) <--> Service(BO)영역 <--> 
 @RequestMapping("/weather_history")
 @Controller
 public class WeatherHistoryController {
-
-	@GetMapping("/add-weather-view")
-	public String addWeatherView() {
-		
-		return "weather_history/addWeather";
-	}
+	
 	
 	@GetMapping("/weather-list-view")
 	public String weatherListView() {
 		
 		return "weather_history/weatherList";
+	}
+	
+
+	@GetMapping("/add-weather-view")
+	public String addWeatherView() {
+		
+		return "weather_history/addWeather";
 	}
 }
