@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     
-    <title>날씨 정보</title>
+    <title>5-5.1 : 날씨 정보 페이지</title>
 
     <!-- bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -17,25 +17,42 @@
 <body>
 
 	<div id="wrap">
-		<div class="contents d-flex bg-primary">
+		<div class="contents d-flex">
 		
-			<!-- 메뉴 영역 -->
-			<nav class="col-2 ">
-			<!--  
-			리스트(list) 메뉴 3종 세트 : ul, li, a 태그
-			리스트(list) 메뉴 클래스 4종 세트 : {nav, nav-fill(선택)} {nav-item}, {nav-link} (가로메뉴)			
-			-->	
-				<ul class="nav flex-column">
-					<li class="nav-item"><a href="#" class="nav-link menu-font">날씨</a></li>
-					<li class="nav-item"><a href="#" class="nav-link menu-font">날씨입력</a></li>
-					<li class="nav-item"><a href="#" class="nav-link menu-font">테마날씨</a></li>
-					<li class="nav-item"><a href="#" class="nav-link menu-font">관측기후</a></li>
+			<nav class="col-2">
+			
+				<!-- 상단 로고 -->
+				<div class="logo d-flex justify-content-center mt-3">
+					<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Emblem_of_the_Government_of_the_Republic_of_Korea.svg/800px-Emblem_of_the_Government_of_the_Republic_of_Korea.svg.png" width="25">
+					<span class="text-white font-weight-bold ml-2">기상청</span>
+				</div>
+			
+				<!-- flex-column: 세로 메뉴 -->
+				<!--  
+				리스트(list) 메뉴 3종 세트 : ul, li, a 태그
+				리스트(list) 메뉴 클래스 4종 세트 : {nav, nav-fill(선택)} {nav-item}, {nav-link} (가로메뉴)			
+				-->	
+				<ul class="nav flex-column mt-4">
+					<li class="nav-item">
+						<a href="/weather-history/weather-list-view" class="nav-link menu-font">날씨</a>
+					</li>
+					<li class="nav-item">
+						<a href="/weather-history/add-weather-view" class="nav-link menu-font">날씨입력</a>
+					</li>
+					<li class="nav-item">
+						<a href="#" class="nav-link menu-font">테마날씨</a>
+					</li>
+					<li class="nav-item">
+						<a href="#" class="nav-link menu-font">관측 기후</a>
+					</li>
 				</ul>
 			</nav>
 			
 			<!-- contents 영역 -->
-			<section class="weather-history bg-secondary col-10">
+			<section class="weather-history col-10 pt-4">
 				<h2 class="mt-3">과거 날씨</h2>
+				<!-- [[${weatherHistoryList}]] -->
+				
 				<table class="table">
 					<thead>
 						<tr>
@@ -49,25 +66,39 @@
 					</thead>
 					
 					<tbody>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+						<tr th:each="history, status : ${weatherHistoryList}">
+							<td th:text="${#temporals.format(history.date, 'yyyy년 M월 d일')}"></td>
+							<td th:switch="${history.weather}">
+								<!-- switch문 -->
+								<img th:case="'맑음'" src="/img/sunny.jpg" alt="맑음">
+								<img th:case="'비'" src="/img/rainy.jpg" alt="비">
+								<img th:case="'흐림'" src="/img/cloudy.jpg" alt="흐림">
+								<img th:case="'구름조금'" src="/img/partlyCloudy.jpg" alt="구름조금">
+								<span th:case="*" th:text="${history.weather}"></span>
+							</td>
+							<td th:text="|${history.temperatures}°C|"></td>
+							<td th:text="|${history.precipitation}mm|"></td>
+							<td th:text="${history.microDust}"></td>
+							<td th:text="${history.windSpeed} + 'km/h'"></td>
 						</tr>
 					</tbody>
 				</table>
 			</section>
 		</div>
 		
+		
 		<!-- footer 영역 -->
-		<footer class="bg-warning d-flex align-items-center">
-			<div>
-				<div></div>
-				<div>(07062) 서울특별시 동작구 여의대방로 16길 61</div>
-				<div>Copyright © marondal 2024</div>
+		<footer class="d-flex align-items-center">
+			<!-- 이미지 -->
+			<div class="footer-logo ml-4">
+				<img class="foot-logo-image" src="https://www.weather.go.kr/w/resources/image/foot_logo.png" width="120">
+			</div>
+			
+			<div class="copyright ml-4">
+				<small class="text-secondary"> 
+					(07062) 서울시 동작구 여의대방로16길 61 <br>
+					Copyright@20XX KMA. All Rights RESERVED.
+				</small>
 			</div>
 		</footer>
 		
