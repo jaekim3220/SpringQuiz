@@ -51,13 +51,19 @@
 				form 태그(method), name 속성(parameter), submit 타입(parameter 전송)
 				-->
 				<form method="post" action="/weather_history/add-weather">
+				
+					<!-- 데이터 입력 영역1 -->
 					<div class="d-flex justify-content-between mt-5">
+					
 						<div class="d-flex align-items-center">
 							<div class="input-label">날짜</div>
+							
 							<input type="text" class="form-control" id="date" name="date">
 						</div>
+						
 						<div class="d-flex align-items-center">
 							<div class="input-label">날씨</div>
+							
 							<select class="form-control" name="weather">
 								<option>맑음</option>
 								<option>구름조금</option>
@@ -68,6 +74,7 @@
 	
 						<div class="d-flex align-items-center">
 							<div class="input-label">미세먼지</div>
+							
 							<select class="form-control" name="microDust">
 								<option>좋음</option>
 								<option>보통</option>
@@ -76,10 +83,14 @@
 							</select>
 						</div>
 					</div>
-	
+					
+					
+					<!-- 데이터 입력 영역2 -->
 					<div class="d-flex justify-content-between mt-5">
+						
 						<div class="d-flex align-items-center">
 							<div class="input-label">기온</div>
+							
 							<div class="input-group">
 								<input type="text" class="form-control" name="temperatures">
 								<div class="input-group-append">
@@ -87,8 +98,10 @@
 								</div>
 							</div>
 						</div>
+						
 						<div class="d-flex align-items-center">
 							<div class="input-label">강수량</div>
+							
 							<div class="input-group">
 								<input type="text" class="form-control" name="precipitation">
 								<div class="input-group-append">
@@ -99,6 +112,7 @@
 	
 						<div class="d-flex align-items-center">
 							<div class="input-label">풍속</div>
+							
 							<div class="input-group">
 								<input type="text" class="form-control" name="windSpeed">
 								<div class="input-group-append">
@@ -107,6 +121,7 @@
 							</div>
 						</div>
 					</div>
+					
 					
 					<div class="text-right pt-4 pb-5">
 						<input type="submit" class="btn btn-success" value="저장">
@@ -130,6 +145,8 @@
 		
 	</div>
 	
+	
+	<!-- JS 영역(날짜) - datepicker -->
 	<script>
 		$(document).ready(function() {
 			$("input[name=date]").datepicker({

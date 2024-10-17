@@ -43,10 +43,10 @@ public class WeatherHistoryController {
 	
 	/*
 	1. 날씨 정보 페이지
-	weather_history table을 활용해서 아래와 같은 페이지를 만드세요.
+	weather_history table을 활용해서 페이지를 만드세요.
 	JSTL을 활용해서 날짜 포맷을 맞춰서 출력하세요.
 	기상청 로고는 인터넷에서 이미지 링크를 구해서 사용하세요.
-	날씨에 맞는 이미지를 표시하세요. (이미지는 아래 링크 활용)
+	날씨에 맞는 이미지를 표시하세요.
 	*/
 	
 	// http:localhost:80/weather_history/weather-list-view
@@ -72,7 +72,7 @@ public class WeatherHistoryController {
 	datepicker 라이브러리를 사용해보세요.
 	*/
 	
-	// 정보 일벽 페이지
+	// 정보 입력 페이지
 	// http:localhost:80/weather_history/add-weather-view
 	@GetMapping("/add-weather-view")
 	public String addWeatherView() {
@@ -101,9 +101,6 @@ public class WeatherHistoryController {
 		
 		
 		// 목록 화면으로 이동
-		// 1. public void addWeather일 경우
-		// HttpServletResponse response
-		// response.sendRedirect("/weather_history/add-weather-view");
 		return "redirect:/weather_history/weather-list-view";
 	}
 }
