@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.quiz.lesson06.mapper.BookmarkMapper">
+
+	<!-- 6.1.1 입력 페이지 -->
+	<insert id="" parameterType="com.quiz.lesson06.domain.Bookmark">
+		INSERT INTO `bookmark`
+		(
+			`name`,
+			`url`,
+			`createAt`,
+			`updatedAt`
+		)
+		VALUES
+		(
+			#{name},
+			#{url},
+			NOW(),
+			NOW()
+		)
+	</insert>
+	
+
+	<!-- 6.1.2 결과 페이지 -->
+	<select id="selectBookmarkList" parameterType="com.quiz.lesson06.domain.Bookmark">
+		SELECT 
+			`id`,
+			`name`,
+			`url`,
+			`createAt`,
+			`updatedAt`
+		FROM
+			`bookmark`
+		
+	</select>
+	
+</mapper>
