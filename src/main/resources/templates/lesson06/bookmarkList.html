@@ -28,9 +28,12 @@
 			
 			<tbody>
 				<tr th:each="bookmark, status : ${bookmarkList}">
-					<td th:text="${status.count}"></td>
+					<td th:text="${bookmark.id}"></td>
 					<td th:text="${bookmark.name}"></td>
-					<td th:text="${bookmark.url}"></td>
+					<td>
+						<a th:href="${bookmark.url}" target="_blank" th:text="${bookmark.url}"></a>
+					</td>
+					
 				</tr>
 			</tbody>
 		</table>

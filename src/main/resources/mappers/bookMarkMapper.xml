@@ -5,7 +5,7 @@
 <mapper namespace="com.quiz.lesson06.mapper.BookmarkMapper">
 
 	<!-- 6.1.1 입력 페이지 -->
-	<insert id="" parameterType="com.quiz.lesson06.domain.Bookmark">
+	<insert id="insertBookmark" parameterType="map">
 		INSERT INTO `bookmark`
 		(
 			`name`,
@@ -24,7 +24,7 @@
 	
 
 	<!-- 6.1.2 결과 페이지 -->
-	<select id="selectBookmarkList" parameterType="com.quiz.lesson06.domain.Bookmark">
+	<select id="selectBookmarkList" resultType="com.quiz.lesson06.domain.Bookmark">
 		SELECT 
 			`id`,
 			`name`,
@@ -35,5 +35,17 @@
 			`bookmark`
 		
 	</select>
+	
+	
+	<!-- 6.2.1 북마크 추가 화면 -->
+	<select id="isDuplicatedUrl" parameterType="String" resultType="boolean">
+			SELECT
+				COUNT(*)
+			FROM
+				`bookmark`
+			WHERE
+				`url` = #{url}
+	</select>
+	
 	
 </mapper>

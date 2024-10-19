@@ -23,7 +23,7 @@
 		</div>
 		
 		<div class="form-group">
-			<label for="url">주소</label>
+			<label for="url">URL</label>
 			<input type="text" id="url" class="form-control">
 		</div>
 		
@@ -51,18 +51,34 @@
 					return;
 				}
 				
-				// TODO 주소 http, https
+				// url 입력 시 http, https 주소만 허용
+				// http도 아니고, https도 아닌 주소를 필터링
+				if (url.startsWith("http://") == false &&
+						!url.startsWith("https://")) {
+					alert("주소(url) 형식이 잘못 되었습니다.");
+					return;
+				}
+				
 				
 				// AJAX 통신
 				$.ajax({
 					// request
-					type:"POST", // form 태그의 method 개념
+					type:"POST", // form 태그의 method 개념(민감하지 않거나 짧은 데이터는 Get 가능)
 					url:"/lesson06/quiz01/add-bookmark", // form 태그의 action 개념
 					data:{"name":name, "url":url},
 					
 					// response - callback
-					success:function(data) { 
-						alert(data);
+					success:function(data) { // Dictionary
+					// Ajax의 응답은 String => JQuery의 함수가 JSON임을 알면
+					// => Dictionary 형식으로 변경
+						// alert(data.code);
+						if (data.code == 200) {
+							// 화면 이동
+							location.href="/lesson06/quiz01/bookmark-list-view";
+						} else {
+							// 로직(logic)상 실패
+							alert(data.error_message); // 에러 원인
+						}
 					},
 					error:function(e) {
 						alert("추가하는데 실패했습니다.");

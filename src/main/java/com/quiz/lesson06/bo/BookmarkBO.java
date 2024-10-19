@@ -23,10 +23,12 @@ public class BookmarkBO {
 	private BookmarkMapper bookmarkMapper;
 	
 	
-	public void insertBookmark(
-			String name, String url,
-			LocalDateTime createAt, LocalDateTime updatedAt) {
-		bookmarkMapper.insertBookmark(name, url, createAt, updatedAt);
+	// input : 파라미터 2개
+	// output : int or void
+	// 6.1.2 입력 페이지
+	public void addBookmark(
+			String name, String url) {
+		bookmarkMapper.insertBookmark(name, url);
 	}
 	
 	// input : X
@@ -34,5 +36,13 @@ public class BookmarkBO {
 	// 6.1.2 결과 페이지
 	public List<Bookmark> getBookmarkList() {
 		return bookmarkMapper.selectBookmarkList();
+	}
+	
+	
+	// input : url
+	// output : boolean t:중복 f:중복 아님
+	// 6.2.1 북마크 추가 화면
+	public boolean isDuplicatedUrl(String url) {
+		return bookmarkMapper.isDuplicatedUrl(url);
 	}
 }
