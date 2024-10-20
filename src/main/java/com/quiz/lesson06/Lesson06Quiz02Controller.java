@@ -78,7 +78,7 @@ public class Lesson06Quiz02Controller {
 		
 		
 		// DB INSERT
-		// bookmarkBO.addBookmark(name, url);
+//		 bookmarkBO.addBookmark(name, url);
 
 		return result;
 	}

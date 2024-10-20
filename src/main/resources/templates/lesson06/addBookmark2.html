@@ -49,11 +49,11 @@
 				
 				// urlCheckBtn 하위(자식) 요소 초기화(중복 생성 방지)
 				$("#urlStatusArea").empty();
-				
+
+				// validation(필수 값)
 				let name = $("#name").val().trim();
 				let url = $("#url").val().trim();
 				
-				// validation
 				if (!url) {
 					$("#urlStatusArea").append('<span class="text-danger">주소가 비어있습니다.</span>');
 					return;
@@ -79,6 +79,7 @@
 							$("#urlStatusArea").append('<span class="text-danger">중복된 주소입니다.</span>');
 						}
 					}, // AJAX 성공인 경우 완료
+					
 					// AJAX 실패인 경우
 					error:function(e) {
 						alert("주소 중복 확인에 실패했습니다.")
@@ -107,6 +108,9 @@
 					alert("주소를 입력하세요");
 					return;
 				}
+				
+				
+				
 				
 				// urlStatusArea에 자식 요소가 없으면 추가
 				console.log($("#urlStatusArea").children().length);
