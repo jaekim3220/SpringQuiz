@@ -57,7 +57,7 @@
 						<th>숙박인원</th>
 						<th>전화번호</th>
 						<th>예약상태</th>
-						<th></th>
+						<th>삭제</th>
 					</tr>
 				</thead>
 				
@@ -72,11 +72,16 @@
 							<span th:case="'대기중'" class="text-info" th:text="${booking.state}"></span>
 							<span th:case="'확정'" class="text-success" th:text="${booking.state}"></span>
 						</td>
+						<td>
+						<!-- 
+						삭제 방법 1) value로 값 넣기 
+						-->
+						<!-- <button type="button" class="del-btn btn btn-danger" th:value="${bookmark.id}">삭제</button> -->
+						
 						<!-- 
 						삭제 방법 2) data로 값 넣기 
 						`th:data-`으로 시작, 대문자 불가 `-` 사용
 						-->
-						<td>
 							<button type="button" class="del-btn btn btn-danger" th:data-booking-id="${booking.id}">삭제</button>
 						</td>
 					</tr>
@@ -96,18 +101,29 @@
 	
 	
 	<script>
-		$(document).ready(function(e) {
+		$(document).ready(function() {
 			// alert("확인")
 			
-			// 예약 목록 삭제
-			$(".del-btn").on('click', function() {
+			// 예약 삭제
+			$(".del-btn").on('click', function(e) {
+				// 1) value에 id 넣기(여러 항목 추가 불가)
+				
+				// 클릭이 발생한 요소 추출
+				// let id = $(this).val(); // 1-1 번
+				// let id = $(this).attr("value"); // 1-2번
+				// let id = e.target.value;
+				
+				
+				// 2) data를 이용(여러 항목 추가 가능)
+				// 태그 th:data-booking-id
+				// js .data("booking-id")
 				
 				let id = $(this).data("booking-id")
 				alert(id)
-				
-			}); // 예약 목록 삭제 종료
+			}); // 예약 삭제 종료
 			
 		});
+		
 			
 		
 	</script>
