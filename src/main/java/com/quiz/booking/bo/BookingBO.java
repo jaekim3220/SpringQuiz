@@ -21,6 +21,7 @@ public class BookingBO {
 	@Autowired // DI(Dependency Injection) : 의존성 주입
 	private BookingMapper bookingMapper;
 
+	
 	// input : X
 	// output : Booking or Null
 	// 6-3.1 예약 목록

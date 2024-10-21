@@ -26,18 +26,9 @@ DB연동 : View영역 <--> Controller영역(Domain) <--> Service(BO)영역 <--> 
 */
 
 @Controller
-@RequestMapping("/lesson06/quiz03")
+@RequestMapping("/booking")
 public class BookingController {
 
-	
-	/*
-	html 경로: /templates/booking/bookingList
-	html 경로: /templates/booking/makeBooking
-	html 경로: /templates/booking/checkBooking
-	URL Path: /booking/booking-list-view
-	URL Path: /booking/make-booking-view
-	URL Path: /booking/check-booking-view
-	*/
 	
 	// 어노테이션(Annotation)
 	@Autowired // DI(Dependency Injection) : 의존성 주입
@@ -50,6 +41,8 @@ public class BookingController {
 	삭제 기능은 AJAX로 구현하세요.
 	`booking` 테이블을 사용
 	*/
+	
+	// http:localhost:80/booking/booking-list-view
 	@GetMapping("/booking-list-view")
 	public String bookingListView(Model model) {
 		
@@ -67,4 +60,32 @@ public class BookingController {
 	
 	
 	
+	/*
+	2. 예약하기 페이지
+	예약하기 페이지에서 기본 유효성 검사를 포함 시키세요.
+	날짜 선택은 datepicker를 이용하세요.
+	예약 하기 기능은 AJAX로 구현하세요.
+	*/
+	
+	// http:localhost:80/booking/make-booking-view
+	@GetMapping("/make-booking-view")
+	public String makeBookingView() {
+		
+		return "booking/makeBooking";
+	}
+	
+	
+	
+	/*
+	3. 예약 조회 기능
+	통나무펜션 페이지를 활용해서 예약 조회 기능을 만드세요.
+	이름과 전화번호를 입력 받고, 이를 통해서 예약 내역을 조회하세요.
+	조회 기능은 AJAX로 구현하세요.
+	조회가 될 경우 아래와 같이 얼럿창을 띄워서 예약 내역을 출력하세요.
+	조회가 안 될 경우 예약 내역이 없습니다를 출력하세요.
+	*/
+	@GetMapping("/check-booking-view")
+	public String checkBookingView() {
+		return "booking/checkBooking";
+	}
 }
