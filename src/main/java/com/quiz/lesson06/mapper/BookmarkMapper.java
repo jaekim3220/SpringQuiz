@@ -36,4 +36,9 @@ public interface BookmarkMapper {
 	// 6.2.1 북마크 추가 화면
 	public boolean isDuplicatedUrl(String url);
 	
+	
+	// input : url
+	// output : Bookmark 행
+	public Bookmark selectBookmarkByUrl(String url);
+	
 }

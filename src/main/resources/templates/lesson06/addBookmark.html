@@ -22,19 +22,76 @@
 			<input type="text" id="name" class="form-control">
 		</div>
 		
-		<div class="form-group">
-			<label for="url">URL</label>
-			<input type="text" id="url" class="form-control">
+		<div class="d-flex">
+				<input type="text" id="url" class="form-control col-11">
+				<button id="checkBtn" type="button" class="btn btn-warning col-1">중복확인</button>
 		</div>
 		
+		<small id="duplicateText" class="text-danger d-none" >중복된 URL입니다</small>
+		<small id="availableText" class="text-success d-none" >저장가능한 URL입니다</small>
+		 
+		
+		
 		<!-- AJAX로 하기 위해 form 3종 세트를 파쇄. button으로 -->
-		<button id="addBtn" type="button" class="btn btn-success btn-block">추가</button>
+		<button id="addBtn" type="button" class="btn btn-success btn-block mt-3">추가</button>
 		<!-- <input id="addBtn" type="button" value="추가" class="btn btn-success btn-block"> -->
 		
 	</div>
 	
 	<script>
 		$(document).ready(function() {
+			// URL 중복확인
+			$("#checkBtn").on('click', function() {
+				// alert('중복확인');
+				let url = $('#url').val().trim();
+				
+				// validation
+				if (!url) {
+					alert("주소를 입력하세요.")
+					return;
+				}
+				
+				// AJAX - 주소 중복 확인
+				$.ajax({
+					// request
+					type:"POST", // form 태그의 method 개념(민감하지 않거나 짧은 데이터는 Get 가능)
+					url:"/lesson06/quiz01/is-duplicate-url", // form 태그의 action 개념
+					data:{"url":url},
+					
+					
+					// response
+					
+					// AJAX 성공인 경우
+					success:function(data) { // Dictionary 형태
+						// Ajax의 응답은 String => JQuery의 함수가 JSON임을 알면
+						// => Dictionary 형식으로 변경
+						// {"code":200, "is_duplicate":true} 성공, 중복
+						
+						// 중복일 경우 경고 문구 노출
+						if(data.is_duplicate == true) { // Ajax 응답의 key 값을 할당
+							// 중복인 경우
+							$("#duplicateText").removeClass("d-none");
+							$("#availableText").addClass("d-none");
+						} else {
+							// 중복이 아닌 사용 가능
+							$("#duplicateText").addClass("d-none");
+							$("#availableText").removeClass("d-none");
+						}
+						
+					}, // AJAX 성공인 경우 완료
+					
+					// AJAX 실패인 경우
+					error:function(e) {
+						alert("주소 중복 확인에 실패했습니다.")
+					}
+					
+					
+				});  // AJAX - 주소 중복 확인 종료
+				
+				
+			}); // URL 중복확인 완료
+			
+			
 			// `추가`를 클릭 할 때
 			$("#addBtn").on('click', function(e) {
 				//alert("추가");

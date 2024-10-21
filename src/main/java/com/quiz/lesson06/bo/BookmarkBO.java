@@ -45,4 +45,11 @@ public class BookmarkBO {
 	public boolean isDuplicatedUrl(String url) {
 		return bookmarkMapper.isDuplicatedUrl(url);
 	}
+	
+	
+	// input : url
+	// output : Bookmark 행
+	public Bookmark getBookmarkByUrl(String url) {
+		return bookmarkMapper.selectBookmarkByUrl(url);
+	}
 }

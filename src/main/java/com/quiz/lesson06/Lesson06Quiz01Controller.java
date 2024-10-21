@@ -103,4 +103,30 @@ public class Lesson06Quiz01Controller {
 		return "lesson06/bookmarkList";
 	}
 	
+	
+	// URL 중복확인 - AJAX 요청
+	@ResponseBody
+	@PostMapping("/is-duplicate-url")
+	public Map<String, Object> isDuplicateUrl(
+			@RequestParam("url") String url
+			) {
+		
+		// DB SELECT : breakPoint 2
+		Bookmark bookmark = bookmarkBO.getBookmarkByUrl(url);
+		
+		boolean isDuplicate = false;
+		if (bookmark != null) {
+			isDuplicate = true;
+		}
+		
+		// Response : breakPoint 1
+		// {"code":200, "is_duplicate":true}
+		Map<String, Object> result = new HashMap<>();
+		result.put("code", 200);
+		result.put("is_duplicate", isDuplicate);
+		
+		return result;
+		
+	}
+	
 }

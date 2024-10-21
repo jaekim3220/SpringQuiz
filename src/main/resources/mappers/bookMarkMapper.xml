@@ -47,5 +47,18 @@
 				`url` = #{url}
 	</select>
 	
+	<select id="selectBookmarkByUrl" parameterType="String" resultType="com.quiz.lesson06.domain.Bookmark">
+		SELECT 
+			`id`,
+			`name`,
+			`url`,
+			`createAt`,
+			`updatedAt`
+		FROM
+			`bookmark`
+		WHERE 
+			`url` = #{url}
+	</select>
+	
 	
 </mapper>
