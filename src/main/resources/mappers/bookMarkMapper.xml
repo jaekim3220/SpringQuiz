@@ -49,6 +49,7 @@
 	
 	
 	<!-- 6-2 URL 중복확인 - AJAX 요청(SELECT) -->
+	<!-- boolean, count()의 경우 lesson06 예제를 참고 -->
 	<select id="selectBookmarkByUrl" parameterType="String" resultType="com.quiz.lesson06.domain.Bookmark">
 		SELECT 
 			`id`,
