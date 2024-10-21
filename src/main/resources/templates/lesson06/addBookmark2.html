@@ -22,80 +22,29 @@
 			<input type="text" id="name" class="form-control">
 		</div>
 		
-		<div class="form-group">
-			<label for="url">URL</label>
-			
-			<div class="d-flex">
-				<input type="text" id="url" class="form-control">
-				<button id="urlCheckBtn" type="button" class="btn btn-warning col-1">중복확인</button>
-			</div>
-			
-			<small id="urlStatusArea"></small>
+		<div class="d-flex">
+				<input type="text" id="url" class="form-control col-11">
+				<button id="checkBtn" type="button" class="btn btn-warning col-1">중복확인</button>
 		</div>
 		
+		<small id="duplicateText" class="text-danger d-none" >중복된 URL입니다</small>
+		<small id="availableText" class="text-success d-none" >저장가능한 URL입니다</small>
+		 
+		
+		
 		<!-- AJAX로 하기 위해 form 3종 세트를 파쇄. button으로 -->
-		<button id="addBtn" type="button" class="btn btn-success btn-block">추가</button>
+		<button id="addBtn" type="button" class="btn btn-success btn-block mt-3">추가</button>
 		<!-- <input id="addBtn" type="button" value="추가" class="btn btn-success btn-block"> -->
 		
 	</div>
 	
 	<script>
 		$(document).ready(function() {
-			// alert("확인"); // 연결 확인
 			
-			// 중복확인 클릭
-			$("#urlCheckBtn").on('click', function() {
-				// alert("중복확인") //
-				
-				// urlCheckBtn 하위(자식) 요소 초기화(중복 생성 방지)
-				$("#urlStatusArea").empty();
-
-				// validation(필수 값)
-				let name = $("#name").val().trim();
-				let url = $("#url").val().trim();
-				
-				if (!url) {
-					$("#urlStatusArea").append('<span class="text-danger">주소가 비어있습니다.</span>');
-					return;
-				}
-				
-				
-				// AJAX - 주소 중복 확인
-				$.ajax({
-					// request
-					type:"GET", // form 태그의 method 개념(민감하지 않거나 짧은 데이터는 Get 가능)
-					url:"/lesson06/quiz02/is-duplicated-url", // form 태그의 action 개념
-					data:{"name":name, "url":url},
-					
-					// response
-					// AJAX 성공인 경우
-					success:function(data) { // Dictionary 형태
-						// Ajax의 응답은 String => JQuery의 함수가 JSON임을 알면
-						// => Dictionary 형식으로 변경
-						// {"code":200, "is_duplicated_url":true} 성공, 중복
-						
-						// 중복일 경우 경고 문구 노출
-						if(data.is_duplicated_url == true) { // Ajax 응답의 key 값을 할당
-							$("#urlStatusArea").append('<span class="text-danger">중복된 주소입니다.</span>');
-						}
-					}, // AJAX 성공인 경우 완료
-					
-					// AJAX 실패인 경우
-					error:function(e) {
-						alert("주소 중복 확인에 실패했습니다.")
-					}
-					
-				}); // AJAX - 주소 중복 확인 종료
-				
-				
-			}); // 중복확인 클릭 종료
 			
-
-			
-			// `추가`를 클릭 할 때 - 중복확인 마쳤는지 validation
+			// `추가` 버튼 클릭
 			$("#addBtn").on('click', function(e) {
-				// alert("추가");
-				
+				//alert("추가");
 				// validation(필수 값)
 				let name = $("#name").val().trim();
 				let url = $("#url").val().trim();
@@ -109,22 +58,52 @@
 					return;
 				}
 				
-				
-				
-				
-				// urlStatusArea에 자식 요소가 없으면 추가
-				console.log($("#urlStatusArea").children().length);
-				if ($("#urlStatusArea").children().length > 0) {
-					alert("추가 불가");
+				// url 입력 시 http, https 주소만 허용
+				// http도 아니고, https도 아닌 주소를 필터링
+				if (url.startsWith("http://") == false &&
+						!url.startsWith("https://")) {
+					alert("주소(url) 형식이 잘못 되었습니다.");
 					return;
-				} 
-				alert("추가 진행");
+				}
+				
+				// 중복 확인 여부
+				// availableText에 d-none이 있으면 가입 불가
+				if ($("availableText").hasClass("d-none")) {
+					alert("url 중복확인을 해주세요.");
+					return;
+				}
 				
 				
-			}); // `추가`를 클릭 할 때 종료
+				// AJAX 통신 - `추가` 버튼 클릭
+				$.ajax({
+					// request
+					type:"POST", // form 태그의 method 개념(민감하지 않거나 짧은 데이터는 Get 가능)
+					url:"/lesson06/quiz01/add-bookmark", // form 태그의 action 개념
+					data:{"name":name, "url":url},
+					
+					// response - callback
+					success:function(data) { // Dictionary
+					// Ajax의 응답은 String => JQuery의 함수가 JSON임을 알면
+					// => Dictionary 형식으로 변경
+						// alert(data.code);
+						if (data.code == 200) {
+							// 화면 이동
+							location.href="/lesson06/quiz01/bookmark-list-view";
+						} else {
+							// 로직(logic)상 실패
+							alert(data.error_message); // 에러 원인
+						}
+					},
+					error:function(e) {
+						alert("추가하는데 실패했습니다.");
+					}
+					
+				}); // AJAX 통신 - `추가` 버튼 클릭 종료
+				
+				
+			}); // `추가` 버튼 클릭 종료
 			
-			
-		}); // document 종료
+		});
 	</script>
 	
 
