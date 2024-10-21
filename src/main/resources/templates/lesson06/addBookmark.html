@@ -92,7 +92,7 @@
 			}); // URL 중복확인 완료
 			
 			
-			// `추가`를 클릭 할 때
+			// `추가` 버튼 클릭
 			$("#addBtn").on('click', function(e) {
 				//alert("추가");
 				// validation(필수 값)
@@ -116,8 +116,15 @@
 					return;
 				}
 				
+				// 중복 확인 여부
+				// availableText에 d-none이 있으면 가입 불가
+				if ($("availableText").hasClass("d-none")) {
+					alert("url 중복확인을 해주세요.");
+					return;
+				}
 				
-				// AJAX 통신
+				
+				// AJAX 통신 - `추가` 버튼 클릭
 				$.ajax({
 					// request
 					type:"POST", // form 태그의 method 개념(민감하지 않거나 짧은 데이터는 Get 가능)
@@ -140,8 +147,12 @@
 					error:function(e) {
 						alert("추가하는데 실패했습니다.");
 					}
-				});
-			});
+					
+				}); // AJAX 통신 - `추가` 버튼 클릭 종료
+				
+				
+			}); // `추가` 버튼 클릭 종료
+			
 		});
 	</script>
 	

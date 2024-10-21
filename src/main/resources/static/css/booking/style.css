@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+header {height:100px;}
+.banner {min-height:250px;}
+footer {height:80px;}
+
+
+nav {height:40px; background-color:#E3871F;}
+.nav-item .nav-link:hover {background-color:#A76417;}
+
+.reserve-confirm {font-size:25px; color:#fff;}

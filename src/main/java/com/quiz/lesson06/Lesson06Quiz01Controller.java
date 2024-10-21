@@ -4,9 +4,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -104,6 +106,17 @@ public class Lesson06Quiz01Controller {
 	}
 	
 	
+	/* 6-2 연습문제 : AJAX로 중복확인*/
+	
+	
+	/*
+	1. AJAX로 동적 태그 추가 - 주소 중복 확인
+	AJAX로 submit 대신 웹 요청하기 문제 페이지를 재사용 해서 문제를 해결하세요.
+	url 입력 옆에 중복확인 버튼을 위치 시키세요.
+	ajax를 통해서 현재 DB에 중복되어 있는 url 이 있는지 화면에 표시하세요.
+	중복이 되었을 경우 중복된 url 입니다, 중복이 안되었을 경우 저장 가능한 url 입니다. 를 표시하세요.
+	*/
+	
 	// URL 중복확인 - AJAX 요청
 	@ResponseBody
 	@PostMapping("/is-duplicate-url")
@@ -112,12 +125,16 @@ public class Lesson06Quiz01Controller {
 			) {
 		
 		// DB SELECT : breakPoint 2
+		boolean isDuplicate = bookmarkBO.isDuplicatedUrl(url);
+		
+		/*
 		Bookmark bookmark = bookmarkBO.getBookmarkByUrl(url);
 		
 		boolean isDuplicate = false;
 		if (bookmark != null) {
 			isDuplicate = true;
 		}
+		*/
 		
 		// Response : breakPoint 1
 		// {"code":200, "is_duplicate":true}
@@ -126,7 +143,32 @@ public class Lesson06Quiz01Controller {
 		result.put("is_duplicate", isDuplicate);
 		
 		return result;
+	}
+	
+	
+	/*
+	2. 삭제 기능 - 고급 문제
+	즐겨찾기 목록 화면에 모든 행에 삭제 버튼을 위치 시키세요.
+	해당 버튼을 눌렀을 때 ajax를 통해서 해당 행을 DB에서 삭제하고, 성공 후에 화면을 새로고침 하세요.
+	`삭제버튼은 button + ajax 요청 + post로 요청`
+	*/
+	
+	@ResponseBody
+	@DeleteMapping("/delete-bookmark")
+	public Map<String, Object> deleteBookmark(
+			@RequestParam("id") int id
+			) {
 		
+		// DB DELETE
+		bookmarkBO.deleteBookmarkById(id);
+		
+		// Response : breakPoint 1
+		Map<String, Object> result = new HashMap<>();
+		// {"code":200, "result":true}
+		result.put("code", 200);
+		result.put("result", "성공");
+		
+		return result;
 	}
 	
 }

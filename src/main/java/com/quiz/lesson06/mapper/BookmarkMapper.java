@@ -39,6 +39,12 @@ public interface BookmarkMapper {
 	
 	// input : url
 	// output : Bookmark 행
-	public Bookmark selectBookmarkByUrl(String url);
+	// 6-2 URL 중복확인 - AJAX 요청
+	public List<Bookmark> selectBookmarkByUrl(String url);
 	
+	
+	// input : int id
+	// output : 성공한 행의 수 int
+	// 6-2 URL 중복확인 - AJAX 요청(DELETE)
+	public int deleteBookmarkById(int id);
 }

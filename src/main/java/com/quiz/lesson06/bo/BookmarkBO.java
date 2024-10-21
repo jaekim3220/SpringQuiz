@@ -48,8 +48,21 @@ public class BookmarkBO {
 	
 	
 	// input : url
-	// output : Bookmark 행
-	public Bookmark getBookmarkByUrl(String url) {
-		return bookmarkMapper.selectBookmarkByUrl(url);
+	// output : Bookmark 행, boolean으로 return
+	// 6-2 URL 중복확인 - AJAX 요청(SELECT)
+	public boolean isDuplicateUrl(String url) {
+		List<Bookmark> bookmarkList = bookmarkMapper.selectBookmarkByUrl(url);
+		
+		// 비어있으면 중복이 아니므로, empty true => false
+		return bookmarkList.isEmpty() == false;
+		
 	}
+	
+	// input : int id
+	// output : 성공한 행의 수 int
+	// 6-2 URL 중복확인 - AJAX 요청(DELETE)
+	public int deleteBookmarkById(int id) {
+		return bookmarkMapper.deleteBookmarkById(id);
+	}
+	
 }

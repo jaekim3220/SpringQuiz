@@ -23,6 +23,7 @@
 					<th>No.</th>
 					<th>이름</th>
 					<th>주소</th>
+					<th>삭제</th>
 				</tr>
 			</thead>
 			
@@ -33,12 +34,75 @@
 					<td>
 						<a th:href="${bookmark.url}" target="_blank" th:text="${bookmark.url}"></a>
 					</td>
+					<td>
+						<!-- 
+						삭제 방법 1) value로 값 넣기 
+						-->
+						<!-- <button type="button" class="del-btn btn btn-danger" th:value="${bookmark.id}">삭제</button> -->
+						
+						<!-- 
+						삭제 방법 2) data로 값 넣기 
+						`th:data-`으로 시작, 대문자 불가 `-` 사용
+						-->
+						<button type="button" class="del-btn btn btn-danger" th:data-bookmark-id="${bookmark.id}">삭제</button>
+					</td>
 					
 				</tr>
 			</tbody>
 		</table>
 		
 	</div>
+	
+	<script>
+		$(document).ready(function() {
+			// 삭제
+			$(".del-btn").on('click', function(e) {
+				// 1) value에 id 넣기(여러 항목 추가 불가)
+				
+				// 클릭이 발생한 요소 추출
+				// let id = $(this).val(); // 1-1 번
+				// let id = $(this).attr("value"); // 1-2번
+				// let id = e.target.value;
+				
+				// 2) data를 이용(여러 항목 추가 가능)
+				// 태그 th:data-bookmark-id
+				// js .data("bookmark-id")
+				
+				let id = $(this).data("bookmark-id")
+				
+				// alert(id);
+				
+				// AJAX 요청 - 삭제
+				$.ajax({
+					// request
+					type:"delete",
+					url:"/lesson06/quiz01/delete-bookmark",
+					data:{"id":id},
+					
+					// response
+					// AJAX 성공인 경우
+					success:function(data) {
+						// result
+						if(data.result == "성공") {
+							// location.href = ""; // 재요청
+							
+							// 새로고침 : 스크롤 유지, 데이터 다시 가져오기
+							location.reload(true)
+						} else if(data.code == 500) {
+							alert(data.error_message);
+						}
+						
+					}, 
+					error:function(e) {
+						alert("삭제하는데 실패했습니다.")
+					}
+					
+				}); // AJAX 요청 - 삭제 종료
+				
+			}); // 삭제 종료
+			
+		});
+	</script>
 
 </body>
 
