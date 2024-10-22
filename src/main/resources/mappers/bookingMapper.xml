@@ -7,7 +7,7 @@
 	<!-- 6-3.1 예약 목록 -->
 	<select id="selectBookingList" resultType="com.quiz.booking.domain.Booking">
 		SELECT 
-			`id`
+			`id`,
 			`name`, 
 			`headcount`, 
 			`day`, 
