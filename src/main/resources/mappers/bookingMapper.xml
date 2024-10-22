@@ -32,7 +32,7 @@
 	
 	<!-- 6-3.2 예약하기 페이지 -->
 	<insert id="insertBooking" parameterType="map">
-		INSERT INTO `booking
+		INSERT INTO `booking`
 		(
 			`name`, 
 			`headcount`, 
