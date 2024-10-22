@@ -83,8 +83,9 @@
 					// AJAX 성공인 경우
 					success:function(data) {
 						// result
-						if(data.result == "성공") {
-							// location.href = ""; // 재요청
+						if(data.result == "성공") { // Ajax 응답의 key 값을 할당
+							// 새로고침 : 재요청
+							// location.href = "/lesson06/quiz01/bookmark-list-view"; 
 							
 							// 새로고침 : 스크롤 유지, 데이터 다시 가져오기
 							location.reload(true)

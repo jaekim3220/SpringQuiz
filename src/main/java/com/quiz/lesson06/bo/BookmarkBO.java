@@ -40,7 +40,7 @@ public class BookmarkBO {
 	
 	
 	// input : url
-	// output : boolean t:중복 f:중복 아님
+	// output : boolean t(0이 아닌 수):중복 f(0):중복 아님
 	// 6.2.1 북마크 추가 화면
 	public boolean isDuplicatedUrl(String url) {
 		return bookmarkMapper.isDuplicatedUrl(url);
@@ -49,7 +49,9 @@ public class BookmarkBO {
 	
 	// input : url
 	// output : Bookmark 행, boolean으로 return
+	// output : boolean t(0이 아닌 수):중복 f(0):중복 아님
 	// 6-2 URL 중복확인 - AJAX 요청(SELECT)
+	// boolean이 아닌 List 타입으로 메서드를 생성하는 것도 방법
 	public boolean isDuplicateUrl(String url) {
 		List<Bookmark> bookmarkList = bookmarkMapper.selectBookmarkByUrl(url);
 		

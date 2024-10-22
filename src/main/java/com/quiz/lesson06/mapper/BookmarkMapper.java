@@ -40,6 +40,7 @@ public interface BookmarkMapper {
 	// input : url
 	// output : Bookmark 행
 	// 6-2 URL 중복확인 - AJAX 요청
+	// Bookmark 행 하나가 아닌 중복된 조건 여러 행을 가져오기 때문에 List 형식
 	public List<Bookmark> selectBookmarkByUrl(String url);
 	
 	

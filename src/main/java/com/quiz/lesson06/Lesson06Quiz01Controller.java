@@ -125,9 +125,11 @@ public class Lesson06Quiz01Controller {
 			) {
 		
 		// DB SELECT : breakPoint 2
+		// output : boolean t(0이 아닌 수):중복 f(0):중복 아님
 		boolean isDuplicate = bookmarkBO.isDuplicatedUrl(url);
 		
 		/*
+		// 단건일 경우 null 이거나 아니거나로 조건이 형성
 		Bookmark bookmark = bookmarkBO.getBookmarkByUrl(url);
 		
 		boolean isDuplicate = false;
@@ -155,6 +157,8 @@ public class Lesson06Quiz01Controller {
 	
 	@ResponseBody
 	@DeleteMapping("/delete-bookmark")
+	// URL 입력으로 데이터 삭제를 방지하기 위해
+	// @GetMapping이 아닌 @DeleteMapping(POST 방식) 사용
 	public Map<String, Object> deleteBookmark(
 			@RequestParam("id") int id
 			) {
