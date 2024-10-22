@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     
-    <title>6-3 : 종합 문제 - 통나무 펜션(예약하기 페이지)</title>
+    <title>6-3.2 : 종합 문제 - 통나무 펜션(예약하기 페이지)</title>
 
     <!-- bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -81,6 +81,84 @@
             </div>
         </footer>
 	</div>
+	
+	
+	<script>
+		$(document).ready(function() {
+			// 날짜
+			$("#date").datepicker({
+				minDate:0, // 시작 날짜는 오늘
+				dateFormat:"yy-mm-dd", 
+				
+			}); // 날짜 종료
+			
+			
+			// `예약하기` 버튼 클릭
+			$("#makeBookingBtn").on('click', function() {
+				// alert("예약");
+				
+				// validation(필수 파라미터)
+				let name = $("#name").val().trim();
+				let date = $("#date").val().trim();
+				let day = $("#day").val().trim();
+				let headcount = $("#headcount").val().trim();
+				let phoneNumber = $("#phoneNumber").val().trim();
+				
+				if (!name) {
+					alert("이름을 입력하세요.");
+					return;
+				}
+				if (!date) {
+					alert("날짜를 선택하세요.");
+					return;
+				}
+				if (!day) {
+					alert("숙박일을 입력하세요.");
+					return;
+				}
+				if (!headcount) {
+					alert("숙박인원을 입력하세요.");
+					return;
+				}
+				if (!phoneNumber) {
+					alert("전화번호를 입력하세요.");
+					return;
+				}
+				
+				// AJAX 통신 - 예약하기
+				$.ajax({
+					// request
+					type:"POST", // form 태그의 method 개념(민감하지 않거나 짧은 데이터는 Get 가능)
+					url:"/booking/make-booking", // form 태그의 action 개념
+					data:{"name":name, "date":date, "day":day, "headcount":headcount, "phoneNumber":phoneNumber},
+					
+					// response - callback
+					// AJAX 성공인 경우
+					// {"code":200, "result":"성공"}
+					success:function(data) { // Ajax 응답의 key 값을 할당
+						if (data.code == 200) {
+							//alert("예약되었습니다.");
+							
+							// 새로고침 : 재요청
+							location.href = "/booking/booking-list-view"; 
+						} else if(data.result == 500) {
+							// {"code":500, "error_message":"에러 이유"}
+							alert(data.error_message);
+						}
+						
+					}, // AJAX 성공인 경우 종료
+					error:function(e) {
+						alert("예약하는데 실패했습니다.")
+					}
+					
+				}); // AJAX 통신 - 예약하기 종료
+				
+				
+			}); // `예약하기` 버튼 클릭 종료
+			
+		});
+	</script>
+	
 	
 </body>
 

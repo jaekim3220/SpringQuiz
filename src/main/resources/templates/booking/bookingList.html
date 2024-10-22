@@ -72,6 +72,7 @@
 						<td th:switch="${booking.state}">
 							<span th:case="'대기중'" class="text-info" th:text="${booking.state}"></span>
 							<span th:case="'확정'" class="text-success" th:text="${booking.state}"></span>
+							<span th:case="'취소'" class="text-danger" th:text="${booking.state}"></span>
 						</td>
 						<td>
 						<!-- 

@@ -20,5 +20,44 @@
 			`booking`
 	</select>
 	
+	<!-- 6-3.1 예약 목록 삭제 -->
+	<delete id="deleteBookingById" parameterType="int">
+		DELETE
+		FROM
+			`booking`
+		WHERE
+			`id` = #{id}
+	</delete>
+	
+	
+	<!-- 6-3.2 예약하기 페이지 -->
+	<insert id="insertBooking" parameterType="map">
+		INSERT INTO `booking
+		(
+			`name`, 
+			`headcount`, 
+			`day`, 
+			`date`, 
+			`phoneNumber`, 
+			`state`, 
+			`createdAt`, 
+			`updatedAt`
+		)
+		VALUES
+		(
+			#{name}, 
+			#{headcount}, 
+			#{day}, 
+			#{date}, 
+			#{phoneNumber}, 
+			'대기중', 
+			NOW(), 
+			NOW()
+		)
+	</insert>
+	
+	
+	<!-- 6-3.3 예약 조회 기능 -->
+	
 	
 </mapper>
