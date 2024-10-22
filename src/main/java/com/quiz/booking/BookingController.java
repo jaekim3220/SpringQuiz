@@ -142,4 +142,27 @@ public class BookingController {
 	public String checkBookingView() {
 		return "booking/checkBooking";
 	}
+	
+	
+	// 조회 기능
+	@ResponseBody
+	@PostMapping("/check-booking")
+	public Map<String, Object> checkBooking(
+			@RequestParam("name") String name,
+			@RequestParam("phoneNumber") String phoneNumber) {
+		
+		// DB SELECT
+		Booking booking = bookingBO.getLatestBookingByNamePhoneNumber(name, phoneNumber);
+		
+		
+		// RESPONSE - JSON : breakpoint
+		// {"code":200, "result":"성공"}
+		Map<String, Object> result = new HashMap<>();
+		result.put("code", 200);
+		result.put("result", "성공");
+		
+		return result;
+	}
+	
+	
 }

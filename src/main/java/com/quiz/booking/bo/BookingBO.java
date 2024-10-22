@@ -3,6 +3,7 @@ package com.quiz.booking.bo;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -51,7 +52,26 @@ public class BookingBO {
 	}
 	
 	
-	// input : X
-	// output : Booking or Null
+	// input : name, phoneNumber
+	// output : Booking(최신 1개) or null
 	// 6-3.3 예약 조회 기능
+	// 가져오는 행이 여러 개 (BookmarkBO 참고)
+	public Booking getLatestBookingByNamePhoneNumber(
+			String name, String phoneNumber) {
+		List<Booking> bookingList = bookingMapper.selectBookingList();
+		// [1, 2, ...] or [1]
+		// []
+		
+		/*
+		if (bookingList.isEmpty()) {
+			return null;
+		}
+		
+		return bookingList.get(bookingList.size() - 1); // 마지막 칸은 요소 개수 - 1
+		*/
+		
+		// 삼항 연산자화
+		return bookingList.isEmpty() ? null : bookingList.get(bookingList.size() - 1);
+	}
+	
 }

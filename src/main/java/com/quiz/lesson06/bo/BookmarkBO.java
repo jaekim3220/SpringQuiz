@@ -52,6 +52,7 @@ public class BookmarkBO {
 	// output : boolean t(0이 아닌 수):중복 f(0):중복 아님
 	// 6-2 URL 중복확인 - AJAX 요청(SELECT)
 	// boolean이 아닌 List 타입으로 메서드를 생성하는 것도 방법
+	// 가져오는 행이 여러 개일 경우
 	public boolean isDuplicateUrl(String url) {
 		List<Bookmark> bookmarkList = bookmarkMapper.selectBookmarkByUrl(url);
 		

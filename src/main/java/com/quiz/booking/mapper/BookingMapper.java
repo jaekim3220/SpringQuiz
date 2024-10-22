@@ -43,7 +43,12 @@ public interface BookingMapper {
 
 	
 	
-	// input : X
+	// input : name, phoneNumber
 	// output : Booking or Null
 	// 6-3.3 예약 조회 기능
+	public List<Booking> selectBookingListByNamePhoneNumber(
+			@Param("name") String name,
+			@Param("phoneNumber") String phoneNumber);
+	
+	
 }
