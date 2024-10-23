@@ -56,9 +56,10 @@ public class BookingBO {
 	// output : Booking(최신 1개) or null
 	// 6-3.3 예약 조회 기능
 	// 가져오는 행이 여러 개 (BookmarkBO 참고)
+	// BO에서 가공하지 않고 XML에서 ORDER BY, LIMIT 문을 사용해 가공할 수도 있음
 	public Booking getLatestBookingByNamePhoneNumber(
 			String name, String phoneNumber) {
-		List<Booking> bookingList = bookingMapper.selectBookingList();
+		List<Booking> bookingList = bookingMapper.selectBookingListByNamePhoneNumber(name, phoneNumber);
 		// [1, 2, ...] or [1]
 		// []
 		

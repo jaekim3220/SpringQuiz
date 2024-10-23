@@ -59,21 +59,21 @@
 	
 	<!-- 6-3.3 예약 조회 기능 -->
 	<select id="selectBookingListByNamePhoneNumber" parameterType="map" resultType="com.quiz.booking.domain.Booking">
-		SELECT 
+		SELECT
 			`id`,
-			`name`, 
-			`headcount`, 
-			`day`, 
-			`date`, 
-			`phoneNumber`, 
-			`state`, 
-			`createdAt`, 
+			`name`,
+			`headcount`,
+			`day`,
+			`date`,
+			`phoneNumber`,
+			`state`,
+			`createdAt`,
 			`updatedAt`
 		FROM
 			`booking`
 		WHERE
-			`name` = #{name} AND
-			`phoneNumber` = #{phoneNumber}
+			`name` = #{name}
+			AND `phoneNumber` = #{phoneNumber}
 			
 	</select>
 	

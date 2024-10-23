@@ -123,7 +123,15 @@
 						// {"code":200, "result":"성공"}
 						success:function(data) { // Ajax 응답의 key 값을 할당
 							if(data.code == 200) {
-								alert("성공");
+								// 예약 내역 있음
+								alert("이름 : " + data.result.name + 
+										"\n날짜 : " + data.result.date + 
+										"\n일수 : " + data.result.day + 
+										"\n인원 : " + data.result.headcount + 
+										"\n상태 : " + data.result.state);
+							} else if(data.code == 500) {
+								// 예약 내역 없음
+								alert(data.error_message);
 							}
 						}, // AJAX 성공인 경우 종료
 						error:function(e) {

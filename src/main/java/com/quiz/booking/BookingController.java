@@ -156,10 +156,16 @@ public class BookingController {
 		
 		
 		// RESPONSE - JSON : breakpoint
-		// {"code":200, "result":"성공"}
+		// {"code":200, "result":booking}
+		// {"code":200, "result":{"id":3, "name":"김재현" ...}}
 		Map<String, Object> result = new HashMap<>();
-		result.put("code", 200);
-		result.put("result", "성공");
+		if (booking != null) {
+			result.put("code", 200);
+			result.put("result", booking);			
+		} else {
+			result.put("code", 500);
+			result.put("error_message", "예약 내역이 없습니다.");
+		}
 		
 		return result;
 	}
