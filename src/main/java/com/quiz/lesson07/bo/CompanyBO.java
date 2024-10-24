@@ -1,5 +1,7 @@
 package com.quiz.lesson07.bo;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -68,7 +70,24 @@ public class CompanyBO {
 		}
 		
 		return company;
+	}
+	
+	
+	// input : 3개
+	public void deleteCompanyById(int id) {
+		// return 값이 부재하므로 void
 		
+		// 방법1) 삭제할 대상 select => 삭제
+		/*
+		CompanyEntity company = companyRepository.findById(id).orElse(null);
+		if (company != null) {
+			companyRepository.delete(company);
+		}
+		*/
+		
+		// 방법2) 삭제할 대상 select => 삭제
+		Optional<CompanyEntity> companyOptional = companyRepository.findById(id);
+		companyOptional.ifPresent(c -> companyRepository.delete(c));
 	}
 	
 }

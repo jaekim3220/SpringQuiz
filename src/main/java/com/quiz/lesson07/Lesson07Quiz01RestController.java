@@ -104,5 +104,20 @@ public class Lesson07Quiz01RestController {
 	}
 	
 	
+	/*
+	3. Delete
+	/lesson07/quiz01/delete
+
+	버블팡이 파산하여 회사가 없어졌다.
+	해당 회사 정보를 테이블에서 삭제하세요. (버블팡의 pk id번호로 업데이트 - workbench에서 조회)
+	*/
+	
+	@GetMapping("/delete")
+	// http://localhost/lesson07/quiz01/delete
+	public String delete() {
+		// id 9번 삭제
+		companyBO.deleteCompanyById(9); // 호출
+		return "수행완료";
+	}
 	
 }

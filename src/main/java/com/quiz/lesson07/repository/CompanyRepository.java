@@ -9,4 +9,5 @@ public interface CompanyRepository extends JpaRepository<CompanyEntity, Integer>
 	// public CompanyEntity save(StudentEntity studentEntity); - Create
 	// public CompanyEntity findById(int id); - Update
 	// => public Optional<CompanyEntity> findById(int id); - Update
+	// public void delete(CompanyEntity companyEntity); - Delete
 }
