@@ -20,7 +20,7 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor // 파라미터가 모두 있는 생성자
 @NoArgsConstructor // 파라미터가 없는 생성자(기본)
-@Builder // Setter 대용
+@Builder(toBuilder = true) // Setter 대용 + update를 위해 toBuilder 추가, 필드 수정 허용
 @Getter // Getter
 @Entity // JPA 엔티티 객체. DB-JPA 통신(사용하려면 lombok이 필요)
 @Table(name = "company") // JPA 엔티티 객체(사용하려면 lombok이 필요)

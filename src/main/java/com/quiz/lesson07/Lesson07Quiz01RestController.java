@@ -86,5 +86,23 @@ public class Lesson07Quiz01RestController {
 		return companyBO.addCompany("버블팡", "여신 금융업", "대기업", 6834);
 	}
 
+	
+	/*
+	2. Update
+	/lesson07/quiz01/update
 
+	버블팡이 극심한 경영 악화로 회사 정보가 변경되었다.
+	규모를 중소기업, 사원수를 34명 으로 수정하세요. (버블팡의 pk id번호로 업데이트 - workbench에서 조회)
+	*/
+	
+	@GetMapping("/update")
+	// http://localhost/lesson07/quiz01/update
+	public CompanyEntity update() {
+		// id가 9번인 버블팡을 중소기업, 사원수 34명으로 변경
+		
+		return companyBO.updateCompanyById(9, "중소기업", 34);
+	}
+	
+	
+	
 }

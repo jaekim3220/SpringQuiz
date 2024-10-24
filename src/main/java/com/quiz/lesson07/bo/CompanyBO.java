@@ -22,6 +22,7 @@ public class CompanyBO {
 	// JPA
 	// input : 4개 parameter
 	// ouput : CompanyEntity
+	// JPA - Create
 	public CompanyEntity addCompany(
 			String name, String business,
 			String scale, int headcount) {
@@ -43,6 +44,31 @@ public class CompanyBO {
 				.scale(scale)
 				.headcount(headcount)
 				.build());
+	}
+	
+	
+	// input : 3개 parameter (id, scale, headcount)
+	// output : CompanyEntity
+	// JPA - Update
+	public CompanyEntity updateCompanyById(
+			int id, String scale, int headcount) {
+		// 기존 데이터 조회 - id로 entity 조회
+		CompanyEntity company = companyRepository.findById(id).orElse(null);
+		
+		// update - JPA는 save 메서드를 사용(INSERT, UPDATE)
+		// 조회된 데이터가 존재할 때 업데이트 진행
+		if (company != null) {
+			
+			// 변경할 내용을 엔티티에 설정 후 save(id가 존재) update
+			company = company.toBuilder()
+			.scale(scale)
+			.headcount(headcount)
+			.build();
+			company = companyRepository.save(company);
+		}
+		
+		return company;
+		
 	}
 	
 }
