@@ -78,6 +78,11 @@ public class Lesson07Quiz02RestController {
 	메소드명 규칙을 검색해서 찾아보세요.
 	*/
 	
+	@GetMapping("/4")
+	public List<RecruitEntity> quiz02_4() {
+		return recruitRepository.findByTypeOrSalaryGreaterThanEqual("정규직", 9000);
+	}
+	
 	
 	/*
 	5. 정렬 제한 조건(/lesson07/quiz02/5)
@@ -98,6 +103,19 @@ public class Lesson07Quiz02RestController {
 	@GetMapping("/6")
 	public List<RecruitEntity> quiz02_6() {
 		return recruitRepository.findByRegionAndSalaryBetween("성남시 분당구", 7000, 8500);
+	}
+	
+	
+	/*
+	문제2 - Native Query
+	7. Native query(/lesson07/quiz02/7)
+	마감일이 2026-04-10 이후이고 연봉이 8100 이상인 정규직 공고를 연봉 내림차순으로 조회하세요.
+	*/
+	
+	@GetMapping("/7")
+	public List<RecruitEntity> quiz02_7() {
+		return recruitRepository.findByCondition("2026-04-10", 8100, "정규직");
+		// return recruitRepository.findDeadlineAfterAndSalaryGreaterThanEqualAndTypeOrderbySalaryDesc("2026-04-10", 8100, "정규직");
 	}
 	
 }
